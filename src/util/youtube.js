@@ -92,12 +92,12 @@ export async function download(id, link) {
             response.data.pipe(writer);
 
             writer.on("finish", () => {
-                console.log(`✅ ${id}.mp4 téléchargé`);
+                console.log(`[✅]  ${id}.mp4 downloaded`);
                 resolve(outputPath);
             });
 
             writer.on("error", (err) => {
-                console.error(`❌ Erreur ${id}.mp4`, err);
+                console.error(`[❌] Error ${id}.mp4`, err);
                 reject(err);
             });
         });
