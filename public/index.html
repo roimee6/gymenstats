@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="bg-gray-100 dark:bg-gray-900 h-full" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/apple-touch-icon-60x60.png" rel="apple-touch-icon"
+          sizes="60x60">
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/apple-touch-icon-76x76.png" rel="apple-touch-icon"
+          sizes="76x76">
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/apple-touch-icon-120x120.png" rel="apple-touch-icon"
+          sizes="120x120">
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/apple-touch-icon-152x152.png" rel="apple-touch-icon"
+          sizes="152x152">
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/apple-touch-icon-180x180.png" rel="apple-touch-icon"
+          sizes="180x180">
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/favicon-32x32.png" rel="icon" sizes="32x32"
+          type="image/png">
+    <link href="https://www.ogcnice-assets.com/images/cms/menus/favicon-16x16.png" rel="icon" sizes="16x16"
+          type="image/png">
+
+    <title>Le GYM en Stats</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "nice-red": "#CC0000",
+                        "dark-bg": "#121212",
+                        "dark-surface": "#1E1E1E",
+                        "dark-border": "#333333",
+                        "dark-text": "#FFFFFF",
+                        "dark-text-muted": "#BBBBBB",
+                    },
+                    fontFamily: {
+                        sans: [
+                            "Inter",
+                            "sans-serif"
+                        ],
+                    },
+                    keyframes: {
+                        flipIn: {
+                            "0%": {
+                                transform: "perspective(400px) rotateY(90deg)",
+                                opacity: "0"
+                            },
+                            "40%": {
+                                transform: "perspective(400px) rotateY(-10deg)",
+                            },
+                            "70%": {
+                                transform: "perspective(400px) rotateY(10deg)",
+                            },
+                            "100%": {
+                                transform: "perspective(400px) rotateY(0deg)",
+                                opacity: "1"
+                            },
+                        }
+                    },
+                    animation: {
+                        flipIn: "flipIn 0.8s ease-out"
+                    }
+                }
+            },
+            plugins: [
+                function ({addUtilities}) {
+                    const newUtilities = {
+                        ".scrollbar": {
+                            "scrollbar-width": "thin",
+                            "scrollbar-color": "var(--scrollbar-thumb) var(--scrollbar-track)"
+                        },
+                        ".scrollbar::-webkit-scrollbar": {
+                            "width": "8px"
+                        },
+                        ".scrollbar::-webkit-scrollbar-track": {
+                            "background": "var(--scrollbar-track)"
+                        },
+                        ".scrollbar::-webkit-scrollbar-thumb": {
+                            "background-color": "var(--scrollbar-thumb)",
+                            "border-radius": "20px",
+                            "border": "3px solid var(--scrollbar-track)"
+                        },
+                        ".dark .scrollbar": {
+                            "--scrollbar-track": "#1E1E1E",
+                            "--scrollbar-thumb": "#333333"
+                        },
+                        ".light .scrollbar": {
+                            "--scrollbar-track": "#F3F4F6",
+                            "--scrollbar-thumb": "#D1D5DB"
+                        },
+                        ".scrollbar-hide": {
+                            "-ms-overflow-style": "none",
+                            "scrollbar-width": "none"
+                        }
+                    }
+                    addUtilities(newUtilities, ["responsive", "hover"]);
+                }
+            ],
+        }
+    </script>
+
+    <link href="https://cdn.plyr.io/3.7.8/plyr.css" rel="stylesheet"/>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+    <style>
+        @media (max-width: 1030px) {
+            #matches-container {
+                max-height: 14vh;
+            }
+        }
+
+        @media (min-width: 1031px) {
+            #matches-container {
+                height: 0;
+                min-height: 1%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-dark-bg font-sans text-gray-800 dark:text-dark-text flex flex-col min-h-screen">
+<header class="bg-white dark:bg-dark-surface rounded-b-2xl shadow-lg p-4 w-full max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 dark:bg-red rounded-xl flex items-center justify-center">
+                <a href="/">
+                    <img alt="Icône rouge (mode sombre)" class="hidden dark:block" src="static/asset/red-icon.png"/>
+                    <img alt="Icône noire (mode clair)" class="block dark:hidden" src="static/asset/black-icon.png"/>
+                </a>
+            </div>
+            <div>
+                <h1 class="text-xl font-semibold">OGC Nice</h1>
+                <p class="text-sm text-gray-600 dark:text-dark-text-muted">Fondé en 1904 • Allianz Riviera</p>
+            </div>
+        </div>
+        <button class="p-2 rounded-full bg-gray-200 dark:bg-dark-border" id="themeToggle">
+            <svg class="w-6 h-6 text-gray-800 dark:text-dark-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="{2}"/>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<main class="flex-grow flex flex-col">
+    <div class="max-w-7xl mx-auto w-full flex-grow flex flex-col overflow-x-hidden" id="dashboard-container">
+        <div class="flex flex-wrap flex-grow -mx-4">
+            <div class="w-full lg:w-2/3 px-4 py-6 lg:py-6 flex flex-col" id="league-section">
+                <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 shadow-lg flex-grow overflow-y-auto"
+                     id="league-content">
+                    <h2 class="ml-2 text-2xl font-semibold mb-4 text-gray-800 dark:text-dark-text" id="league-title">
+                        <!-- ... -->
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2 max-h-[calc(100vh-335px)] overflow-y-auto scrollbar"
+                         id="team-cards-container">
+                        <!-- ... -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/3 px-4 py-6 flex flex-col" id="sidebar">
+                <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 shadow-lg mb-6" id="season-stats">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-dark-text" id="stats-title">Dernière
+                        Composition</h2>
+                    <div class="flex flex-col items-center" id="player-stats-container">
+                        <!-- ... -->
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 shadow-lg flex-grow flex flex-col"
+                     id="upcoming-matches">
+
+                    <h2 class="text-xl font-semibold mb-5 text-gray-800 dark:text-dark-text" id="matches-title">
+                        Dernier match et suivant
+                    </h2>
+
+                    <div class="space-y-4 overflow-y-auto flex-grow scrollbar-hide" id="matches-container">
+                        <!-- ... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-white dark:bg-dark-surface shadow-lg w-full max-w-7xl mx-auto rounded-t-2xl">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-nice-red rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="{2}"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold">Le GYM en Stats</h2>
+                    <p class="text-xs text-gray-600 dark:text-dark-text-muted">Merci pour l'intérêt que vous portez à
+                        notre site.</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="text-gray-600 hover:text-blue-500 dark:text-dark-text-muted dark:hover:text-blue-300"
+                   href="https://x.com/gymenstatscom">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a class="text-gray-600 hover:text-gray-900 dark:text-dark-text-muted dark:hover:text-dark-text"
+                   href="https://github.com/roimee6/gymenstats">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="mt-4 text-xs text-gray-600 dark:text-dark-text-muted text-center">
+            © 2025 gymenstats. Code source sur GitHub. Contenus protégés chargés depuis Twitter officiel des diffuseurs.
+        </div>
+    </div>
+</footer>
+
+<!--suppress HtmlUnknownTarget -->
+<script src="static/script.js"></script>
+
+</body>
+
+</html>

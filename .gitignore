@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Development environments
+.idea/
+.vscode/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build files
+/build
+/dist
+/out
+
+# Git
+.git/
+
+# Specifically exclude public/cdn folder
+!public/cdn/
+public/cdn/*
+
+# Config
+config.js
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+.tmp/

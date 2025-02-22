@@ -1,0 +1,24 @@
+{
+  "name": "gymstatscom",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "https://github.com/roimee6",
+  "license": "ISC",
+  "description": "A site inspired by basic statistics sites, but completely dedicated to ogcnice! Fotmob being my favorite site for statistics, the format of the site will be based on the fotmob api.",
+  "dependencies": {
+    "@fastify/static": "^7.0.4",
+    "@max-xoo/fotmob": "^2.5.1",
+    "axios": "^1.7.7",
+    "discord.js": "^14.18.0",
+    "fastify": "^4.28.1",
+    "ffmpeg-ffprobe-static": "^5.1.0-rc.1",
+    "fluent-ffmpeg": "^2.1.3",
+    "twitter-downloader": "^1.1.8",
+    "youtube-dl-exec": "^3.0.10"
+  }
+}
